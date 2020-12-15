@@ -3,19 +3,49 @@ import React, { Component } from "react";
 class Todo extends Component {
     constructor(props) {
         super(props);
+        this.state = {isEditing: false, todo: this.props.todoName};
         this.handleRemove = this.handleRemove.bind(this);
+        this.toggleForm = this.toggleForm.bind(this);
+        this.handleChange = this.handleChange.bind(this);
+        this.handleUpdate = this.handleUpdate.bind(this);
     }
     handleRemove() {
         this.props.removeTodo(this.props.id);
     }
+    toggleForm() {
+        this.setState({isEditing: !this.state.isEditing});
+    }
+    handleUpdate(evt) {
+        evt.preventDefault();
+        this.props.updateTodo(this.props.id, this.state.todo);
+        this.setState({isEditing: false});
+    }
+    handleChange(evt) {
+        this.setState({
+            [evt.target.name]: evt.target.value
+        });
+    }
 
     render() {
+        let result;
+        if(this.state.isEditing){
+            result = (
+                <form onSubmit={this.handleUpdate}>
+                    <input type="text" value={this.state.todo} name="todo" onChange={this.handleChange} />
+                    <button>Update</button>
+                </form>
+            );
+        } else {
+            result = (
+                <div>
+                    <p>{this.props.todoName}</p>
+                    <button onClick={this.toggleForm}>Edit</button>
+                    <button onClick={this.handleRemove}>X</button>
+                </div>
+            );
+        }
         return (
-            <div>
-                <p>{this.props.todoName}</p>
-                <button>Edit</button>
-                <button onClick={this.handleRemove}>X</button>
-            </div>
+            result
         )
     }
 }
