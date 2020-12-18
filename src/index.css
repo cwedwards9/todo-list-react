@@ -13,3 +13,7 @@ body {
   font-family: "Quicksand", sans-serif;
   min-height: 500px;
 }
+
+::selection {
+  background-color: rgba(255, 255, 255, 0.3);
+}
