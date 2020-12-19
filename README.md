@@ -6,7 +6,6 @@ Using React to create a todo list where users can add, delete, and cross out tod
 
 Click [here](https://cwedwards9.github.io/todo-list-react/) to take a look!
       
-![Todo List Example](/public/todo-list-example.png)
-
+![Todo List Example](/public/todo-list-example.PNG)
 ## Technologies
 I used create-react-app to practice working with React
